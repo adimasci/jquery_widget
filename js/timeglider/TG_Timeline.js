@@ -90,7 +90,10 @@
         if (!ev.icon || ev.icon === "none") {
           ev.icon = "";
         }  else {
-          ev.icon = widget_options.icon_folder + ev.icon;
+            // only prepend with icon_folder if it's not a fully qualified url
+            if (! (ev.icon.indexOf('http://') == 0 ||  ev.icon.indexOf('https://') == 0) ) {
+                ev.icon = widget_options.icon_folder + ev.icon;
+            }
         }
             
         ev.titleWidth = tg.getStringWidth(ev.title);
